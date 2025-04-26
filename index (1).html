@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Refeições Inteligentes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: url('https://assets.onecompiler.app/43fvz8gg6/43fxg2x7c/30unnamed-removebg-preview.jpg') no-repeat center center fixed;
+      background-size: contain;
+      background-repeat: no-repeat; /* Para não repetir a imagem */
+      background-position: center center; /* Para manter ela centralizada */
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .logo {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 10px 0;
+      font-size: 28px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      color: #666;
+    }
+
+    .search-section {
+      margin-bottom: 20px;
+    }
+
+    .search-section input {
+      padding: 10px;
+      width: 60%;
+      max-width: 300px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+    .photo-box {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 20px;
+      border: 2px dashed #aaa;
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .photo-box img {
+      width: 70%;
+      height: 70%;
+      object-fit: cover;
+    }
+
+    .dropdown {
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+      margin: 20px 0;
+      border-radius: 6px;
+    }
+
+    .meal-options {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="https://assets.onecompiler.app/43fvz8gg6/43fxg2x7c/100unnamed-removebg-preview-removebg-preview.png" width="700" height="200" class="logo" alt="Logo do Restaurante">
+
+    <h1>Refeições Inteligentes</h1>
+    <h2>Banco de Dados para Gestão de Refeições Escolares</h2>
+
+    <div class="search-section">
+      <input type="text" id="nome-busca" placeholder="Digite o nome do aluno...">
+      <button class="btn" onclick="buscarAluno()">Pesquisar</button>
+    </div>
+
+    <select id="lista-alunos" style="display: none;">
+      <option value="ana">Ana Silva</option>
+      <option value="bruno">Bruno Oliveira</option>
+      <option value="carla">Carla Souza</option>
+      <option value="daniel">Daniel Lima</option>
+      <option value="eduarda">Eduarda Costa</option>
+      <option value="felipe">Felipe Rocha</option>
+      <option value="gabriela">Gabriela Martins</option>
+      <option value="henrique">Henrique Alves</option>
+      <option value="isabela">Isabela Nunes</option>
+      <option value="joao">João Pedro</option>
+      <option value="karen">Karen Dias</option>
+      <option value="lucas">Lucas Fernandes</option>
+      <option value="mariana">Mariana Cardoso</option>
+      <option value="nicolas">Nicolas Mendes</option>
+      <option value="olivia">Olívia Teixeira</option>
+    </select>
+
+    <div class="photo-box" id="foto-box">
+      <p id="foto-texto">Foto do aluno aparecerá aqui</p>
+    </div>
+
+    <select class="dropdown">
+      <option disabled selected>Selecione o dia da semana</option>
+      <option>Segunda-feira</option>
+      <option>Terça-feira</option>
+      <option>Quarta-feira</option>
+      <option>Quinta-feira</option>
+      <option>Sexta-feira</option>
+    </select>
+
+    <div class="meal-options">
+      <label><input type="checkbox"> Café da manhã 1</label>
+      <label><input type="checkbox"> Café da manhã 2</label>
+      <label><input type="checkbox"> Almoço 1</label>
+      <label><input type="checkbox"> Almoço 2</label>
+      <label><input type="checkbox"> Lanche 1</label>
+      <label><input type="checkbox"> Lanche 2</label>
+    </div>
+
+    <div class="buttons">
+      <button class="btn">Concluir</button>
+      <button class="btn">Refazer</button>
+      <button class="btn">Histórico</button>
+    </div>
+  </div>
+
+  <script>
+    const fotos = {
+      ana: 'https://f.i.uol.com.br/fotografia/2023/03/20/16793383846418ab904df4b_1679338384_3x2_md.jpg?text=Ana+Silva',
+      bruno: 'https://s3.glbimg.com/v1/AUTH_35862ca5c6ab48b992baf1f1b4f7062e/m-extra-globo-com/incoming/18045660-59b-cd8/w480h720-PROP/2015-863762377-_mg_0087_20151104.jpg?text=Ana+Silva',
+      carla: 'https://f.i.uol.com.br/fotografia/2021/03/09/16153198346047d31a8b40e_1615319834_3x2_rt.jpg?text=Carla+Souza',
+      daniel: 'https://br.web.img2.acsta.net/c_310_420/pictures/210/156/21015692_20130626165149943.jpg?text=Daniel+Lima',
+      eduarda: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCoo1V3M77BLAMY6VzZgef1-quS9xpCRO45A&s?text=Eduarda+Costa',
+      felipe: 'https://img.a.transfermarkt.technology/portrait/big/28003-1740766555.jpg?lm=1?text=Felipe+Rocha',
+      gabriela: 'https://br.web.img2.acsta.net/pictures/20/01/07/02/04/3952839.jpg?text=Gabriela+Martins',
+      henrique: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQZfoB7u20dREsRxPn_q7nA31nsqkn0bLHjQ&s?text=Henrique+Alves',
+      isabela: 'https://www.camara.leg.br/internet/deputado/bandep/204534.jpgmaior.jpg?text=Isabela+Nunes',
+      joao: 'https://cinemaweb.com.br/wp-content/uploads/2024/06/pessoa-wagner-moura.jpg?text=João+Pedro',
+      karen: 'https://www.camara.leg.br/internet/deputado/bandep/204534.jpgmaior.jpg?text=Karen+Dias',
+      lucas: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSioEdBrFFM0iW0f6uhegsUMeMptl48GSdOeQ&s?text=Lucas+Fernandes',
+      mariana: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS1aQQ_2G2Sw3ZmOAJ4rsp_-u77DlcqXNLTAj-iBO5TCCInfB-g5Y_1tO9kdGC5HpLJJc&usqp=CAU?text=Mariana+Cardoso',
+      nicolas: 'https://img.a.transfermarkt.technology/portrait/big/68290-1692601435.jpg?lm=1?text=Nicolas+Mendes',
+      olivia: 'https://f.i.uol.com.br/fotografia/2023/03/20/16793383846418ab904df4b_1679338384_3x2_md.jpghttps://via.placeholder.com/200?text=Olívia+Teixeira'
+    };
+
+     function removerAcentos(texto) {
+    return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function buscarAluno() {
+    const nomeDigitado = removerAcentos(document.getElementById('nome-busca').value.trim().toLowerCase());
+    const select = document.getElementById('lista-alunos');
+    const fotoBox = document.getElementById('foto-box');
+
+    let encontrado = false;
+
+    for (let i = 0; i < select.options.length; i++) {
+      const option = select.options[i];
+      const nomeOption = removerAcentos(option.text.toLowerCase());
+      
+      if (nomeOption.includes(nomeDigitado) && nomeDigitado !== "") {
+        const valor = option.value;
+        const img = document.createElement('img');
+        img.src = fotos[valor];
+        fotoBox.innerHTML = '';
+        fotoBox.appendChild(img);
+        select.selectedIndex = i;
+        encontrado = true;
+        break;
+      }
+    }
+
+    if (!encontrado) {
+      fotoBox.innerHTML = '<p id="foto-texto">Aluno não encontrado</p>';
+    }
+  }
+
+  function concluirRegistro() {
+    const select = document.getElementById('lista-alunos');
+    const aluno = select.options[select.selectedIndex]?.text || "Não selecionado";
+
+    const dia = document.querySelector('.dropdown').value || "Não selecionado";
+
+    const opcoes = document.querySelectorAll('.meal-options input[type=checkbox]');
+    const refeicoes = [];
+    opcoes.forEach(opt => {
+      if (opt.checked) {
+        refeicoes.push(opt.parentElement.textContent.trim());
+      }
+    });
+
+    if (aluno === "Não selecionado" || dia === "Não selecionado" || refeicoes.length === 0) {
+      alert("Preencha todos os campos antes de concluir.");
+      return;
+    }
+
+    const registro = {
+      aluno,
+      dia,
+      refeicoes,
+      dataHora: new Date().toLocaleString()
+    };
+
+    let historico = JSON.parse(localStorage.getItem("historicoRefeicoes")) || [];
+    historico.push(registro);
+    localStorage.setItem("historicoRefeicoes", JSON.stringify(historico));
+
+    alert("Registro salvo com sucesso!");
+  }
+  function refazerFormulario() {
+  // Limpar campo de busca
+  document.getElementById('nome-busca').value = '';
+
+  // Resetar select de alunos
+  const select = document.getElementById('lista-alunos');
+  select.selectedIndex = 0;
+
+  // Resetar foto
+  const fotoBox = document.getElementById('foto-box');
+  fotoBox.innerHTML = '<p id="foto-texto">Foto do aluno aparecerá aqui</p>';
+
+  // Resetar dia da semana
+  document.querySelector('.dropdown').selectedIndex = 0;
+
+  // Desmarcar refeições
+  const opcoes = document.querySelectorAll('.meal-options input[type=checkbox]');
+  opcoes.forEach(opt => opt.checked = false);
+}
+
+  function mostrarHistorico() {
+    const historico = JSON.parse(localStorage.getItem("historicoRefeicoes")) || [];
+    let html = "<h3>Histórico de Refeições</h3>";
+
+    if (historico.length === 0) {
+      html += "<p>Nenhum registro encontrado.</p>";
+    } else {
+      html += "<ul style='text-align:left'>";
+      historico.forEach((item, index) => {
+        html += `<li>
+          <strong>Aluno:</strong> ${item.aluno}<br>
+          <strong>Dia:</strong> ${item.dia}<br>
+          <strong>Refeições:</strong> ${item.refeicoes.join(", ")}<br>
+          <strong>Data/Hora:</strong> ${item.dataHora}
+          <hr>
+        </li>`;
+      });
+      html += "</ul>";
+    }
+
+    const novaJanela = window.open("", "Histórico", "width=500,height=600");
+    novaJanela.document.write(`<html><head><title>Histórico</title></head><body>${html}</body></html>`);
+    novaJanela.document.close();
+  }
+
+  // Conectar os botões aos eventos
+  window.onload = function () {
+    document.querySelector('.buttons .btn:nth-child(1)').onclick = concluirRegistro; // Concluir
+    document.querySelector('.buttons .btn:nth-child(3)').onclick = mostrarHistorico; // Histórico
+    document.querySelector('.buttons .btn:nth-child(2)').onclick = refazerFormulario; // Refazer
+  }
+</script>
