@@ -1,0 +1,177 @@
+body {
+    font-family: sans-serif;
+    margin: 10;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('https://assets.onecompiler.app/43fvz8gg6/43fx4cees/19unnamed-removebg-preview.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.7); /* Fundo branco semi-transparente para legibilidade */
+    box-shadow: 0 2px 5px rgba(0, 0, 205, 0.1);
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+header {
+    text-align: center;
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.logo {
+    max-width: 700px; /* Ajuste conforme necessário */
+    height: auto;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.intro h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.intro h2 {
+    color: #666;
+    font-size: 1.2em;
+    font-weight: normal;
+}
+
+.search-student {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.search-box {
+    display: flex;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 15px;
+}
+
+.search-box input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
+}
+
+.search-box button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.search-box button:hover {
+    background-color: #0056b3;
+}
+
+.student-photo {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #eee; /* Placeholder para a foto */
+    background-size: cover;
+    background-position: center;
+}
+
+.meal-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 80%;
+}
+
+.day-selector {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.day-selector label {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.day-selector select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.menu-options {
+    margin-bottom: 30px;
+    text-align: left;
+    width: 100%;
+}
+
+.menu-options label {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.menu-options input[type="radio"] {
+    margin-right: 5px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.action-buttons button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.concluir-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.refazer-btn {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.historico-btn {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.action-buttons button:hover {
+    opacity: 0.8;
+}
